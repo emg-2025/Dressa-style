@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="fr"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Atelier de couture</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#FAF8F4;--surface:#fff;--surface-2:#F3EEE4;--ink:#111;--ink-soft:#6B655A;--or:#C08D3F;--or-deep:#8F6820;--border:#E8E1D3;--btn-bg:#111;--btn-ink:#fff}
+@media(prefers-color-scheme:dark){:root{--bg:#0D0D0C;--surface:#161615;--surface-2:#211F1C;--ink:#F1ECE2;--ink-soft:#A8A193;--border:#2E2B26;--btn-bg:#C08D3F;--btn-ink:#111}}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;line-height:1.5;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+h1,h2,h3{font-family:Georgia,'Times New Roman',serif;margin:0}
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);border-bottom:1px solid var(--border);display:flex;align-items:center;gap:12px;padding:10px 16px}
+.espace-link{margin-left:auto;font-size:.82rem;white-space:nowrap}
+.client-link{font-size:.82rem;white-space:nowrap;margin-left:14px;}
+.logo{width:40px;height:40px;border-radius:50%;background:var(--or);color:#111;display:grid;place-items:center;font-weight:700;overflow:hidden;flex:none}.logo img{width:100%;height:100%;object-fit:cover}
+header .n{font-family:Georgia,serif;font-weight:700;flex:1}
+nav{display:flex;gap:14px;font-size:.9rem}nav a{color:var(--ink-soft);text-decoration:none}
+.btn{display:inline-block;border:0;background:var(--btn-bg);color:var(--btn-ink);padding:10px 16px;border-radius:2px;font:inherit;font-weight:600;cursor:pointer;text-decoration:none}
+.btn.sec{background:transparent;color:var(--ink);border:1px solid var(--border)}
+main{max-width:1000px;margin:0 auto;padding:0 16px 40px}
+.hero{padding:36px 0 24px}.hero h1{font-size:clamp(1.8rem,5vw,2.8rem)}.hero p{color:var(--ink-soft);max-width:620px}
+.tags{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0 16px}.tags span{background:var(--surface-2);border:1px solid var(--border);padding:2px 10px;font-size:.82rem}
+section{padding:24px 0}section>h2{font-size:1.4rem;margin-bottom:14px;border-bottom:1px solid var(--or);display:inline-block;padding-bottom:4px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:14px}
+.card{background:var(--surface);border:1px solid var(--border);overflow:hidden;display:flex;flex-direction:column}
+.card img,.ph{width:100%;aspect-ratio:3/4;object-fit:cover;background:var(--surface-2);display:block}
+.card .b{padding:12px;display:flex;flex-direction:column;gap:4px;flex:1}.cat{font-size:.75rem;text-transform:uppercase;letter-spacing:.06em;color:var(--or-deep)}
+.price{color:var(--ink-soft);font-size:.88rem}.card .btn{margin-top:auto;font-size:.85rem;padding:8px 10px;text-align:center}
+.filters{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px}.filters button{border:1px solid var(--border);background:var(--surface);color:var(--ink);padding:5px 12px;cursor:pointer;font:inherit;font-size:.85rem}.filters button.on{background:var(--ink);color:var(--bg)}
+.srow{display:flex;justify-content:space-between;gap:12px;align-items:center;background:var(--surface);border:1px solid var(--border);padding:12px 14px;margin-bottom:8px}
+form{background:var(--surface);border:1px solid var(--border);padding:16px;display:grid;gap:12px;max-width:560px}
+label{font-size:.85rem;font-weight:600;display:block;margin-bottom:4px}input,textarea{width:100%;padding:10px;border:1px solid var(--border);background:var(--bg);color:var(--ink);font:inherit;border-radius:2px}textarea{min-height:100px}
+.hp{position:absolute;left:-9999px}.ok{background:var(--surface-2);border:1px solid var(--or);padding:14px;max-width:560px}.hidden{display:none}
+footer{border-top:1px solid var(--border);padding:20px 16px;text-align:center;color:var(--ink-soft);font-size:.85rem}
+.empty{color:var(--ink-soft)}
+.dl{width:56px;height:56px;border-radius:14px;background:var(--or);color:#111;display:grid;place-items:center;font-weight:700;overflow:hidden;flex:none}.dl img{width:100%;height:100%;object-fit:cover}.dtop{display:flex;gap:12px;align-items:center}
+
+/* ===== Identité Dressa : indigo, ruban de couturière, papier patron ===== */
+:root{--bg:#F1F3F8;--surface:#fff;--surface-2:#E7EAF4;--ink:#14183A;--ink-soft:#5B6183;--noir:#121846;--noir-soft:#1B2360;--indigo:#1E2A78;--or:#F2B705;--or-deep:#2B3A9E;--or-line:#C9CEEA;--rust:#C8372D;--olive:#2E7D5B;--border:#DADFEE;--btn-bg:#1E2A78;--btn-ink:#fff;--btn-hover-bg:#2B3A9E;--btn-hover-ink:#fff;--radius:8px;--f-display:'Bricolage Grotesque',system-ui,sans-serif;--f-body:'Figtree',system-ui,sans-serif}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0C1030;--surface:#151B4A;--surface-2:#1D2560;--ink:#EEF0FB;--ink-soft:#A3AAD6;--border:#2A3373;--or-deep:#FFD666;--or-line:#343E8A;--btn-bg:#F2B705;--btn-ink:#121846;--btn-hover-bg:#FFCB2E;--btn-hover-ink:#121846;}}
+:root[data-theme="dark"]{--bg:#0C1030;--surface:#151B4A;--surface-2:#1D2560;--ink:#EEF0FB;--ink-soft:#A3AAD6;--border:#2A3373;--or-deep:#FFD666;--or-line:#343E8A;--btn-bg:#F2B705;--btn-ink:#121846;--btn-hover-bg:#FFCB2E;--btn-hover-ink:#121846;}
+html,body,button,input,select,textarea{font-family:var(--f-body)}
+body{background-color:var(--bg);background-image:radial-gradient(rgba(30,42,120,.12) 1px,transparent 1.3px);background-size:22px 22px}
+h1,h2,h3,.brand .name,.platform span,.kpi,.auth-card h1,header .n{font-family:var(--f-display);font-weight:700;letter-spacing:-.01em;text-transform:none}
+.section-label,.brand .tag,.badge,.role-badge,.btn,.nav-btn,.order-card .num,.platform span{text-transform:none!important;letter-spacing:0!important}
+.section-label{font-size:.86rem;font-weight:700}
+.btn{border-radius:8px;font-weight:600;font-size:.9rem}.btn.small{font-size:.8rem}
+.card,.order-card,.quote-card,.client-card,.port-card,.service-row,.charge-row,.kpi{border-radius:14px}
+.modal{border-radius:20px}.badge,.role-badge{border-radius:999px}
+:focus-visible{outline:2px solid #F2B705;outline-offset:2px}
+
+header{background:var(--indigo);color:#fff;border-bottom:0;position:sticky}
+header nav a{color:rgba(255,255,255,.82)}
+header::after{content:"";position:absolute;left:0;right:0;bottom:-8px;height:8px;background:linear-gradient(to right,#14183A 1.5px,transparent 1.5px) left top/50px 8px repeat-x,linear-gradient(to right,#14183A 1.5px,transparent 1.5px) left top/10px 4px repeat-x,#F2B705}
+.card,.srow,form,.ok{border-radius:14px}.filters button{border-radius:999px}.tags span{border-radius:999px}
+main{padding-top:12px}
+
+@media (max-width:640px){
+  header{flex-wrap:wrap;gap:8px 12px;padding:10px 14px}
+  header .n{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  header nav{order:3;width:100%;overflow-x:auto;white-space:nowrap;gap:18px;padding-bottom:4px;scrollbar-width:none}
+  header nav a{padding:8px 0}
+  main{padding:0 14px 40px}
+  .hero{padding:24px 0 16px}
+  .grid{grid-template-columns:1fr 1fr;gap:10px}
+  .card .b{padding:10px}
+  .btn{min-height:46px}
+  input,textarea{font-size:16px;min-height:46px}
+  .srow{flex-direction:column;align-items:stretch}
+  form{max-width:100%}
+}
+</style>
+<link rel="manifest" href="manifest-client.webmanifest">
+<link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32.png">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Dressa">
+<script src="pwa.js" defer></script>
+<meta name="theme-color" content="#FAF8F4">
+</head><body>
+<header><div class="logo" id="logo">…</div><div class="n" id="hName">Atelier</div>
+<nav id="topNav" class="hidden"><a href="#services">Services</a><a href="#catalogue">Créations</a><a href="#devis">Devis</a><a href="#" id="chg">Changer d'atelier</a></nav>
+<a class="espace-link" href="client.html">Espace client</a><a class="client-link" href="espace.html">Espace couturier</a></header>
+<main>
+<section id="directory" class="hidden"><h2>Choisissez votre atelier</h2>
+<p class="empty" style="margin:0 0 12px;">Sélectionnez l'atelier auquel vous souhaitez envoyer votre demande de devis.</p>
+<div style="max-width:420px;margin-bottom:14px;"><input id="dirQ" type="search" placeholder="Rechercher par nom, ville ou spécialité" aria-label="Rechercher un atelier"></div>
+<div class="grid" id="dirGrid"><p class="empty">Chargement…</p></div></section>
+<div id="shop" class="hidden">
+<div class="hero"><h1 id="heroName">Bienvenue</h1><p id="heroDesc"></p><div class="tags" id="tags"></div>
+<div style="display:flex;gap:8px;flex-wrap:wrap"><a class="btn" href="#devis">Demander un devis</a><a class="btn sec hidden" id="waBtn" target="_blank" rel="noopener">WhatsApp</a></div></div>
+<section id="services"><h2>Nos services</h2><div id="svcList"><p class="empty">Chargement…</p></div></section>
+<section id="catalogue"><h2>Nos créations</h2><div class="filters" id="filters"></div><div class="grid" id="grid"><p class="empty">Chargement…</p></div></section>
+<section id="devis"><h2>Demander un devis</h2>
+<p id="devisFor" class="empty" style="margin:0 0 12px;"></p>
+<form id="qForm"><div><label>Votre nom *</label><input id="qNom" required autocomplete="name"></div>
+<div><label>Votre téléphone / WhatsApp *</label><input id="qTel" type="tel" required autocomplete="tel" placeholder="+225 ..."></div>
+<div><label>Votre demande *</label><textarea id="qDem" required placeholder="Ex. Robe sur mesure pour un mariage en décembre"></textarea></div>
+<input class="hp" id="qHp" tabindex="-1" autocomplete="off" aria-hidden="true">
+<button class="btn" id="qBtn" type="submit">Envoyer ma demande</button><div id="qErr" style="color:#A8462E"></div></form>
+<div class="ok hidden" id="qOk"><b>Demande envoyée ✓</b><br>L'atelier vous répondra avec un prix et un délai.</div></section>
+<section id="infos"><h2>Infos pratiques</h2><div id="infoBox" class="empty"></div></section>
+</div>
+</main>
+<footer id="foot"></footer>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+<script>
+const sb=supabase.createClient("https://yotnjsjnqexamuntmetc.supabase.co","eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InlvdG5qc2pucWV4YW11bnRtZXRjIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTA0ODAwMTgsImV4cCI6MjEwNjA1NjAxOH0.rY9fzBPtX2jpDcN5YeaILp91SOdOtoE1BPel7WGpcuw",{auth:{persistSession:false,autoRefreshToken:false,detectSessionInUrl:false}});
+const $=id=>document.getElementById(id);
+const esc=s=>(s??'').toString().replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const fcfa=n=>(Number(n)||0).toLocaleString('fr-FR')+' FCFA';
+let A=new URLSearchParams(location.search).get('a');
+const norm=t=>String(t||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase();
+let P={}, waNum='', items=[], cat='Tout';
+const ini=n=>((n||'').trim().split(/\s+/).filter(Boolean).slice(0,2).map(w=>w[0]).join('')||'?').toUpperCase();
+function pick(text){ $('qDem').value=text; $('devis').scrollIntoView(); $('qNom').focus(); }
+function renderGrid(){
+  const cats=['Tout',...new Set(items.map(i=>i.categorie).filter(Boolean))];
+  $('filters').innerHTML=cats.length>2?cats.map(c=>`<button class="${c===cat?'on':''}" data-c="${esc(c)}">${esc(c)}</button>`).join(''):'';
+  const l=items.filter(i=>cat==='Tout'||i.categorie===cat);
+  $('grid').innerHTML=l.length?l.map((i,k)=>`<div class="card">${i.imageUrl?`<img loading="lazy" src="${esc(i.imageUrl)}" alt="${esc(i.titre)}">`:'<div class="ph"></div>'}
+  <div class="b"><div class="cat">${esc(i.categorie||'')}</div><h3>${esc(i.titre||'')}</h3>${i.prix?`<div class="price">à partir de ${fcfa(i.prix)}</div>`:''}
+  <button class="btn" data-m="${esc(i.titre||'')}">Je veux ce modèle</button></div></div>`).join(''):'<p class="empty">Les créations arrivent bientôt.</p>';
+}
+$('filters').onclick=e=>{const c=e.target.dataset.c; if(c){cat=c;renderGrid();}};
+$('grid').onclick=e=>{const m=e.target.dataset.m; if(m!==undefined) pick('Je souhaite le modèle « '+m+' ». Détails : ');};
+$('svcList').onclick=e=>{const m=e.target.dataset.s; if(m!==undefined) pick('Service : '+m+'. Détails : ');};
+async function loadShop(){
+  $('waBtn').classList.add('hidden');
+  const [pr,po,sv]=await Promise.all([sb.from('profile').select('*').eq('id',A).maybeSingle(),sb.from('portfolio').select('*').eq('atelier_id',A).order('createdAt',{ascending:false}),sb.from('services').select('*').eq('atelier_id',A).order('createdAt',{ascending:true})]);
+  P=pr.data||{};
+  const nom=P.nom||'Atelier de couture'; document.title=nom;
+  $('hName').textContent=nom; $('heroName').textContent=nom; $('heroDesc').textContent=P.desc||'';
+  $('logo').innerHTML=P.logoUrl?`<img src="${esc(P.logoUrl)}" alt="">`:esc(ini(nom));
+  $('tags').innerHTML=(P.spec||'').split(/[,;\n]/).map(x=>x.trim()).filter(Boolean).map(x=>`<span>${esc(x)}</span>`).join('');
+  let n=(P.wa||P.tel||'').replace(/\D/g,''); if(n.length===10) n='225'+n; waNum=n;
+  if(n){ $('waBtn').href='https://wa.me/'+n+'?text='+encodeURIComponent('Bonjour, je souhaite des informations.'); $('waBtn').classList.remove('hidden'); }
+  const sl=sv.data||[];
+  $('svcList').innerHTML=sl.length?sl.map(s=>`<div class="srow"><div><b>${esc(s.nom)}</b><div class="price">${s.prix?'à partir de '+fcfa(s.prix):'Prix sur devis'}${s.delai?' · délai : '+esc(s.delai):''}</div></div><button class="btn sec" data-s="${esc(s.nom)}">Demander</button></div>`).join(''):'<p class="empty">Services bientôt disponibles.</p>';
+  items=po.data||[]; renderGrid();
+  const rows=[['Adresse',P.loc],['Téléphone',P.tel],['Horaires',P.horaires],['Zone de déplacement',P.zone],['Expérience',P.exp?P.exp+' ans':'']].filter(r=>r[1]);
+  $('infoBox').innerHTML=rows.length?rows.map(r=>`<div><b>${r[0]} :</b> ${esc(r[1])}</div>`).join(''):'';
+  $('foot').textContent='© '+new Date().getFullYear()+' '+nom;
+  $('devisFor').innerHTML='Votre demande sera envoyée à <b>'+esc(nom)+'</b>. <a href="#" id="chg2">Changer d\'atelier</a>';
+}
+let ATELIERS=[];
+function renderDir(){
+  const q=norm($('dirQ').value);
+  const l=ATELIERS.filter(a=>!q||norm([a.nom,a.loc,a.spec,a.desc].join(' ')).includes(q)).sort((x,y)=>norm(x.nom).localeCompare(norm(y.nom)));
+  $('dirGrid').innerHTML=l.length?l.map(a=>`<div class="card"><div class="b"><div class="dtop"><div class="dl">${a.logoUrl?`<img src="${esc(a.logoUrl)}" alt="">`:esc(ini(a.nom))}</div><div><h3>${esc(a.nom)}</h3>${a.loc?`<div class="price">${esc(a.loc)}</div>`:''}</div></div>
+    ${a.spec?`<div class="tags" style="margin:6px 0 0;">${a.spec.split(/[,;\n]/).map(x=>x.trim()).filter(Boolean).slice(0,3).map(x=>`<span>${esc(x)}</span>`).join('')}</div>`:''}
+    <button class="btn" data-a="${esc(a.id)}">Choisir cet atelier</button></div></div>`).join(''):'<p class="empty">Aucun atelier ne correspond à votre recherche.</p>';
+}
+async function loadDirectory(){
+  $('dirGrid').innerHTML='<p class="empty">Chargement…</p>';
+  const {data,error}=await sb.from('profile').select('*');
+  if(error){ console.error(error); $('dirGrid').innerHTML='<p class="empty">Liste indisponible pour le moment. Réessayez dans un instant.</p>'; return; }
+  ATELIERS=(data||[]).filter(a=>a.nom); renderDir();
+}
+function showDirectory(push){
+  A=null; if(push) history.pushState(null,'','?');
+  $('shop').classList.add('hidden'); $('topNav').classList.add('hidden'); $('directory').classList.remove('hidden');
+  document.title='Ateliers de couture'; $('hName').textContent='Ateliers de couture'; $('logo').textContent='✂';
+  $('foot').textContent='© '+new Date().getFullYear()+' Ateliers de couture';
+  loadDirectory(); window.scrollTo(0,0);
+}
+function openShop(id,push){
+  A=id; if(push) history.pushState(null,'','?a='+encodeURIComponent(id));
+  $('directory').classList.add('hidden'); $('shop').classList.remove('hidden'); $('topNav').classList.remove('hidden');
+  $('qForm').classList.remove('hidden'); $('qOk').classList.add('hidden'); $('qErr').textContent=''; cat='Tout';
+  $('svcList').innerHTML='<p class="empty">Chargement…</p>'; $('grid').innerHTML='<p class="empty">Chargement…</p>';
+  loadShop(); window.scrollTo(0,0);
+}
+function route(){ const a=new URLSearchParams(location.search).get('a'); a?openShop(a,false):showDirectory(false); }
+$('dirQ').addEventListener('input',renderDir);
+$('dirGrid').addEventListener('click',e=>{ const id=e.target.dataset.a; if(id) openShop(id,true); });
+document.addEventListener('click',e=>{ if(e.target.id==='chg'||e.target.id==='chg2'){ e.preventDefault(); showDirectory(true); } });
+window.addEventListener('popstate',route);
+route();
+let lastSend=0;
+$('qForm').addEventListener('submit',async e=>{
+  e.preventDefault(); if($('qHp').value||!A) return;
+  if(Date.now()-lastSend<15000){ $('qErr').textContent='Patientez quelques secondes.'; return; }
+  const nom=$('qNom').value.trim(), tel=$('qTel').value.trim(), dem=$('qDem').value.trim();
+  if(!nom||!tel||!dem) return;
+  $('qBtn').disabled=true; $('qErr').textContent='';
+  const {error}=await sb.from('quotes').insert({client:nom.slice(0,120),telephone:tel.slice(0,30),demande:dem.slice(0,2000),status:'Nouvelle demande',source:'public',atelier_id:A,createdAt:Date.now()});
+  $('qBtn').disabled=false;
+  if(error){ console.error(error); $('qErr').innerHTML="Envoi impossible pour le moment. Contactez l'atelier par WhatsApp.<br><small style='color:var(--ink-soft)'>Détail technique : "+esc(error.message||error.code||'inconnu')+"</small>"; return; }
+  lastSend=Date.now(); $('qForm').classList.add('hidden'); $('qOk').classList.remove('hidden');
+});
+</script></body></html>

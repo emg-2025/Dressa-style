@@ -1,0 +1,396 @@
+<!doctype html>
+<html lang="fr"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Dressa — Espace client</title>
+<meta name="theme-color" content="#1E2A78">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#F1F3F8;--surface:#fff;--surface-2:#E7EAF4;--ink:#14183A;--ink-soft:#5B6183;--indigo:#1E2A78;--or:#F2B705;--or-deep:#2B3A9E;--or-line:#C9CEEA;--rust:#C8372D;--olive:#2E7D5B;--border:#DADFEE;--btn-bg:#1E2A78;--btn-ink:#fff;--btn-hover-bg:#2B3A9E;--btn-hover-ink:#fff;--radius:14px;--f-display:'Bricolage Grotesque',system-ui,sans-serif;--f-body:'Figtree',system-ui,sans-serif}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0C1030;--surface:#151B4A;--surface-2:#1D2560;--ink:#EEF0FB;--ink-soft:#A3AAD6;--border:#2A3373;--or-deep:#FFD666;--or-line:#343E8A;--btn-bg:#F2B705;--btn-ink:#121846;--btn-hover-bg:#FFCB2E;--btn-hover-ink:#121846}}
+:root[data-theme="dark"]{--bg:#0C1030;--surface:#151B4A;--surface-2:#1D2560;--ink:#EEF0FB;--ink-soft:#A3AAD6;--border:#2A3373;--or-deep:#FFD666;--or-line:#343E8A;--btn-bg:#F2B705;--btn-ink:#121846;--btn-hover-bg:#FFCB2E;--btn-hover-ink:#121846}
+*{box-sizing:border-box}
+html,body,button,input,select,textarea{font-family:var(--f-body)}
+h1,h2,h3{font-family:var(--f-display);font-weight:700;letter-spacing:-.01em;margin:0}
+body{margin:0;background-color:var(--bg);color:var(--ink);line-height:1.5;
+  background-image:radial-gradient(rgba(30,42,120,.12) 1px,transparent 1.3px);background-size:22px 22px;
+  padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+::selection{background:var(--or);color:#111}
+a{color:var(--indigo)}
+:root[data-theme="dark"] a, @media (prefers-color-scheme:dark){a{color:#9FB0FF}}
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:15;background:var(--indigo);color:#fff;
+  display:flex;align-items:center;gap:12px;padding:12px 16px}
+header .n{font-family:var(--f-display);font-weight:700;flex:1}
+header::after{content:"";position:absolute;left:0;right:0;bottom:-8px;height:8px;
+  background:linear-gradient(to right,#14183A 1.5px,transparent 1.5px) left top/50px 8px repeat-x,#F2B705}
+.logo{width:36px;height:36px;border-radius:50%;background:var(--or);color:#111;display:grid;place-items:center;font-weight:700;flex:none}
+nav.tabs{display:flex;gap:4px;overflow-x:auto;padding:10px 12px 0;max-width:900px;margin:0 auto;scrollbar-width:none}
+nav.tabs::-webkit-scrollbar{display:none}
+nav.tabs button{flex:none;border:0;background:none;color:var(--ink-soft);font:inherit;font-weight:600;font-size:.88rem;
+  padding:10px 14px;border-radius:999px;cursor:pointer;white-space:nowrap}
+nav.tabs button.active{background:var(--surface);color:var(--indigo);box-shadow:0 1px 3px rgba(20,24,58,.12)}
+main{max-width:900px;margin:0 auto;padding:16px 16px 60px}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:20px}
+.section-label{font-size:.86rem;font-weight:700;color:var(--or-deep);margin:22px 0 10px}
+.section-label:first-child{margin-top:0}
+.field{margin-bottom:14px}
+.field label{display:block;font-size:.82rem;color:var(--ink-soft);margin-bottom:5px;font-weight:600}
+.field input,.field select,.field textarea{width:100%;padding:10px 12px;border:1px solid var(--border);border-radius:10px;
+  background:var(--bg);color:var(--ink);font:inherit;min-height:44px}
+.field textarea{resize:vertical;min-height:90px}
+.field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--or);box-shadow:0 0 0 2px rgba(242,183,5,.28)}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media (max-width:560px){.grid-2{grid-template-columns:1fr}}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;border:1px solid var(--btn-bg);background:var(--btn-bg);
+  color:var(--btn-ink);padding:11px 18px;border-radius:10px;font:inherit;font-weight:700;font-size:.88rem;cursor:pointer;min-height:44px;text-decoration:none}
+.btn:hover{background:var(--btn-hover-bg);border-color:var(--btn-hover-bg);color:var(--btn-hover-ink)}
+.btn.secondary{background:transparent;color:var(--ink);border-color:var(--border)}
+.btn.secondary:hover{background:transparent;color:var(--or-deep);border-color:var(--or)}
+.btn.small{padding:8px 12px;font-size:.8rem;min-height:38px}
+.btn[disabled]{opacity:.55;cursor:default}
+.pw-wrap{position:relative}.pw-wrap input{padding-right:40px}
+.pw-eye{position:absolute;right:4px;top:50%;transform:translateY(-50%);background:none;border:0;cursor:pointer;font-size:1rem;padding:8px;opacity:.6}
+.pw-eye:hover{opacity:1}
+.auth-wrap{min-height:calc(100vh - 90px);display:flex;align-items:center;justify-content:center;padding:20px}
+.auth-card{background:var(--surface);border-top:6px solid var(--or);border-radius:20px;padding:30px;width:100%;max-width:420px}
+.auth-card h1{font-size:1.4rem;text-align:center}
+.auth-card .sub{color:var(--ink-soft);font-size:.88rem;text-align:center;margin:4px 0 20px}
+.auth-tabs{display:flex;gap:6px;margin-bottom:18px}
+.auth-tabs button{flex:1;border:1px solid var(--border);background:var(--surface-2);color:var(--ink-soft);font:inherit;font-weight:700;
+  font-size:.8rem;padding:9px;border-radius:999px;cursor:pointer}
+.auth-tabs button.on{background:var(--indigo);color:#fff;border-color:var(--indigo)}
+.err{color:var(--rust);font-size:.85rem;min-height:1.2em;margin-top:6px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:14px}
+.p-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;display:flex;flex-direction:column}
+.p-card img,.p-card .ph{width:100%;aspect-ratio:3/4;object-fit:cover;background:var(--surface-2);display:block}
+.p-card .b{padding:12px;display:flex;flex-direction:column;gap:4px;flex:1}
+.p-card h3{min-height:2.5em;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;line-height:1.25}
+.p-card .atelier{font-size:.72rem;color:var(--or-deep);font-weight:700;text-transform:uppercase;letter-spacing:.03em}
+.p-card .price{color:var(--ink-soft);font-size:.86rem}
+.p-card .btn{margin-top:auto;font-size:.82rem}
+.filters{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px}
+.filters button{border:1px solid var(--border);background:var(--surface);color:var(--ink);padding:6px 13px;border-radius:999px;
+  cursor:pointer;font:inherit;font-size:.82rem}
+.filters button.on{background:var(--indigo);border-color:var(--indigo);color:#fff}
+.empty{color:var(--ink-soft);text-align:center;padding:30px 10px}
+.order-row{border:1px solid var(--border);border-radius:var(--radius);padding:14px 16px;margin-bottom:10px}
+.order-row .top{display:flex;justify-content:space-between;gap:10px;align-items:flex-start;flex-wrap:wrap}
+.order-row .art{color:var(--ink-soft);font-size:.88rem;margin-top:2px}
+.order-row .meta{color:var(--ink-soft);font-size:.8rem;margin-top:6px}
+.badge{display:inline-block;font-size:.72rem;font-weight:700;padding:4px 10px;border-radius:999px;white-space:nowrap}
+.badge.new{background:#F2B70530;color:var(--or-deep)}
+.badge.mid{background:#2B3A9E20;color:var(--indigo)}
+.badge.ok{background:#2E7D5B20;color:var(--olive)}
+.badge.no{background:#C8372D20;color:var(--rust)}
+.modal-back{position:fixed;inset:0;background:rgba(12,16,48,.55);display:flex;align-items:center;justify-content:center;z-index:40;padding:16px}
+.modal-back.hidden{display:none}
+.modal{background:var(--surface);border-radius:20px;padding:24px;max-width:480px;width:100%;max-height:90vh;overflow:auto}
+.hidden{display:none!important}
+.toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:var(--indigo);color:#fff;padding:12px 20px;
+  border-radius:999px;font-size:.86rem;font-weight:600;z-index:60;box-shadow:0 6px 20px rgba(20,24,58,.3)}
+.who{display:flex;align-items:center;gap:10px}
+.who .av{width:34px;height:34px;border-radius:50%;background:var(--or);color:#111;display:grid;place-items:center;font-weight:700;flex:none}
+</style>
+<link rel="manifest" href="manifest-client.webmanifest">
+<link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32.png">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Dressa">
+<script src="pwa.js" defer></script>
+</head>
+<body>
+
+<div id="authScreen" class="auth-wrap">
+  <div class="auth-card">
+    <h1>Dressa</h1>
+    <div class="sub">Votre espace client — parcourez, commandez, suivez.</div>
+    <div class="auth-tabs">
+      <button type="button" class="on" data-mode="login">Connexion</button>
+      <button type="button" data-mode="signup">Créer un compte</button>
+    </div>
+    <div id="loginForm">
+      <div class="field"><label>Email</label><input id="li_email" type="email" autocomplete="email" placeholder="vous@exemple.com"></div>
+      <div class="field"><label>Mot de passe</label><div class="pw-wrap"><input id="li_pass" type="password" autocomplete="current-password"><button type="button" class="pw-eye" data-for="li_pass">👁</button></div></div>
+      <button class="btn" id="li_go" style="width:100%;">Se connecter</button>
+      <div class="err" id="li_err"></div>
+    </div>
+    <div id="signupForm" class="hidden">
+      <div class="field"><label>Votre nom</label><input id="su_nom" autocomplete="name"></div>
+      <div class="field"><label>Téléphone</label><input id="su_tel" type="tel" placeholder="+225 ..."></div>
+      <div class="field"><label>Email</label><input id="su_email" type="email" autocomplete="email"></div>
+      <div class="field"><label>Mot de passe</label><div class="pw-wrap"><input id="su_pass" type="password" placeholder="6 caractères minimum" autocomplete="new-password"><button type="button" class="pw-eye" data-for="su_pass">👁</button></div></div>
+      <button class="btn" id="su_go" style="width:100%;">Créer mon compte</button>
+      <div class="err" id="su_err"></div>
+    </div>
+  </div>
+</div>
+
+<div id="app" class="hidden">
+  <header>
+    <div class="logo">D</div>
+    <div class="n">Dressa</div>
+    <div class="who"><div class="av" id="meAv">?</div></div>
+  </header>
+  <nav class="tabs" id="tabs">
+    <button class="active" data-tab="catalogue">Catalogue</button>
+    <button data-tab="surmesure">Sur-mesure</button>
+    <button data-tab="commandes">Mes commandes</button>
+    <button data-tab="compte">Mon compte</button>
+  </nav>
+  <main>
+    <section id="tab-catalogue">
+      <div class="section-label">Toutes les créations disponibles à l'achat</div>
+      <div class="filters" id="filters"></div>
+      <div class="grid" id="catGrid"><p class="empty">Chargement…</p></div>
+    </section>
+
+    <section id="tab-surmesure" class="hidden">
+      <div class="section-label">Faire confectionner un modèle sur mesure</div>
+      <div class="card">
+        <p style="color:var(--ink-soft); font-size:.9rem; margin-top:0;">Décrivez ce que vous voulez, ajoutez une photo si vous en avez une, et choisissez l'atelier à qui envoyer la demande. L'atelier vous répondra avec un prix et un délai.</p>
+        <div class="field"><label>Atelier</label><select id="sm_atelier"><option value="">Choisir un atelier…</option></select></div>
+        <div class="field"><label>Votre demande</label><textarea id="sm_demande" placeholder="Ex. Robe de soirée en dentelle, inspirée de la photo, pour un mariage en décembre."></textarea></div>
+        <div class="field"><label>Photo du modèle (optionnel)</label><input id="sm_photo" type="file" accept="image/*"></div>
+        <button class="btn" id="sm_go">Envoyer ma demande</button>
+        <div class="err" id="sm_err"></div>
+      </div>
+    </section>
+
+    <section id="tab-commandes" class="hidden">
+      <div class="section-label">Mes commandes</div>
+      <div id="ordersList"><p class="empty">Chargement…</p></div>
+      <div class="section-label">Mes demandes de devis / sur-mesure</div>
+      <div id="quotesList"><p class="empty">Chargement…</p></div>
+    </section>
+
+    <section id="tab-compte" class="hidden">
+      <div class="section-label">Mon compte</div>
+      <div class="card">
+        <div class="field"><label>Nom</label><input id="me_nom"></div>
+        <div class="field"><label>Téléphone</label><input id="me_tel"></div>
+        <button class="btn" id="me_save">Enregistrer</button>
+        <span class="err" id="me_err"></span>
+      </div>
+      <div style="margin-top:16px;"><button class="btn secondary" id="logoutBtn">Se déconnecter</button></div>
+    </section>
+  </main>
+</div>
+
+<div id="modalBack" class="modal-back hidden"><div class="modal" id="modalBody"></div></div>
+<div id="toast" class="toast hidden"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+<script>
+const supabaseConfig = { url: "https://yotnjsjnqexamuntmetc.supabase.co",
+  anonKey: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InlvdG5qc2pucWV4YW11bnRtZXRjIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTA0ODAwMTgsImV4cCI6MjEwNjA1NjAxOH0.rY9fzBPtX2jpDcN5YeaILp91SOdOtoE1BPel7WGpcuw" };
+const $=id=>document.getElementById(id);
+const esc=s=>(s??'').toString().replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const fcfa=n=>(Number(n)||0).toLocaleString('fr-FR')+' FCFA';
+const today=()=>new Date().toISOString().slice(0,10);
+function toast(msg){ const t=$('toast'); t.textContent=msg; t.classList.remove('hidden'); clearTimeout(toast._h); toast._h=setTimeout(()=>t.classList.add('hidden'),2600); }
+function openModal(html){ $('modalBody').innerHTML=html; $('modalBack').classList.remove('hidden'); }
+function closeModal(){ $('modalBack').classList.add('hidden'); $('modalBody').innerHTML=''; }
+$('modalBack').addEventListener('click', e=>{ if(e.target.id==='modalBack') closeModal(); });
+document.addEventListener('click', e=>{
+  const b=e.target.closest('.pw-eye'); if(!b) return;
+  const inp=$(b.dataset.for); inp.type = inp.type==='password' ? 'text' : 'password';
+});
+
+let sb=null;
+try{ sb = supabase.createClient(supabaseConfig.url, supabaseConfig.anonKey); }
+catch(e){ console.error('Connexion Supabase impossible.', e); }
+
+/* ---------- Auth ---------- */
+document.querySelectorAll('.auth-tabs button').forEach(b=>b.addEventListener('click', ()=>{
+  document.querySelectorAll('.auth-tabs button').forEach(x=>x.classList.toggle('on', x===b));
+  $('loginForm').classList.toggle('hidden', b.dataset.mode!=='login');
+  $('signupForm').classList.toggle('hidden', b.dataset.mode!=='signup');
+}));
+
+let currentBuyer=null, signingUp=false;
+
+$('li_go').addEventListener('click', async ()=>{
+  $('li_err').textContent='';
+  const email=$('li_email').value.trim(), pass=$('li_pass').value;
+  if(!email||!pass){ $('li_err').textContent='Merci de remplir tous les champs.'; return; }
+  const btn=$('li_go'); btn.disabled=true; btn.textContent='Connexion...';
+  const {error} = await sb.auth.signInWithPassword({email, password:pass});
+  btn.disabled=false; btn.textContent='Se connecter';
+  if(error){ $('li_err').textContent = error.message==='Invalid login credentials' ? 'Email ou mot de passe incorrect.' : error.message; }
+});
+
+$('su_go').addEventListener('click', async ()=>{
+  $('su_err').textContent='';
+  const nom=$('su_nom').value.trim(), tel=$('su_tel').value.trim(), email=$('su_email').value.trim(), pass=$('su_pass').value;
+  if(!nom||!email||!pass){ $('su_err').textContent='Merci de remplir tous les champs.'; return; }
+  const btn=$('su_go'); btn.disabled=true; btn.textContent='Création...';
+  try{
+    signingUp=true;
+    const {data,error} = await sb.auth.signUp({email, password:pass});
+    if(error) throw error;
+    if(!data.session){ signingUp=false; $('su_err').textContent='Compte créé. Si la confirmation par email est active sur ce projet, confirmez avant de vous connecter.'; btn.disabled=false; btn.textContent='Créer mon compte'; return; }
+    const uid=data.user.id;
+    await sb.from('buyers').upsert({id:uid, nom, telephone:tel, createdAt:Date.now()});
+    signingUp=false;
+    await loadBuyer(data.user);
+  }catch(err){ signingUp=false; $('su_err').textContent=err.message||'Une erreur est survenue.'; btn.disabled=false; btn.textContent='Créer mon compte'; }
+});
+
+$('logoutBtn').addEventListener('click', ()=>sb.auth.signOut().then(()=>location.reload()));
+
+async function loadBuyer(user){
+  const {data} = await sb.from('buyers').select('*').eq('id', user.id).maybeSingle();
+  currentBuyer = {uid:user.id, nom:(data&&data.nom)||user.email, telephone:(data&&data.telephone)||''};
+  $('meAv').textContent=(currentBuyer.nom||'?').trim().slice(0,1).toUpperCase();
+  $('me_nom').value=currentBuyer.nom||''; $('me_tel').value=currentBuyer.telephone||'';
+  $('authScreen').classList.add('hidden'); $('app').classList.remove('hidden');
+  loadCatalogue(); loadAteliersForSelect(); loadMine();
+}
+
+sb && sb.auth.onAuthStateChange((event, session)=>{
+  if(signingUp) return;
+  const user = session && session.user;
+  if(!user){ currentBuyer=null; $('app').classList.add('hidden'); $('authScreen').classList.remove('hidden'); return; }
+  loadBuyer(user);
+});
+
+/* ---------- Navigation ---------- */
+$('tabs').addEventListener('click', e=>{
+  const b=e.target.closest('button'); if(!b) return;
+  document.querySelectorAll('#tabs button').forEach(x=>x.classList.toggle('active', x===b));
+  document.querySelectorAll('main > section').forEach(s=>s.classList.add('hidden'));
+  $('tab-'+b.dataset.tab).classList.remove('hidden');
+});
+
+/* ---------- Catalogue (marketplace) ---------- */
+let ateliers={}, catItems=[], catFilter='Tout';
+async function loadAteliers(){
+  if(Object.keys(ateliers).length) return ateliers;
+  const {data} = await sb.from('profile').select('id,nom,logoUrl');
+  ateliers={}; (data||[]).forEach(a=>ateliers[a.id]=a);
+  return ateliers;
+}
+async function loadCatalogue(){
+  await loadAteliers();
+  const {data,error} = await sb.from('portfolio').select('*').eq('en_vente', true).order('createdAt',{ascending:false});
+  if(error){ console.error(error); $('catGrid').innerHTML='<p class="empty">Catalogue indisponible pour le moment.</p>'; return; }
+  catItems = data||[];
+  renderCatalogue();
+}
+function renderCatalogue(){
+  const cats=['Tout', ...new Set(catItems.map(i=>i.categorie).filter(Boolean))];
+  $('filters').innerHTML = cats.length>2 ? cats.map(c=>`<button class="${c===catFilter?'on':''}" data-c="${esc(c)}">${esc(c)}</button>`).join('') : '';
+  const list = catItems.filter(i=>catFilter==='Tout'||i.categorie===catFilter);
+  $('catGrid').innerHTML = list.length ? list.map(i=>{
+    const at=ateliers[i.atelier_id]||{};
+    return `<div class="p-card">${i.imageUrl?`<img loading="lazy" src="${esc(i.imageUrl)}" alt="${esc(i.titre)}">`:'<div class="ph"></div>'}
+      <div class="b"><div class="atelier">${esc(at.nom||'Atelier')}</div><h3 style="font-size:.98rem;">${esc(i.titre||'')}</h3>
+      ${i.prix?`<div class="price">${fcfa(i.prix)}</div>`:''}
+      <button class="btn" data-order="${esc(i.id)}">Commander</button></div></div>`;
+  }).join('') : '<p class="empty">Aucun article en vente pour le moment.</p>';
+}
+$('filters').addEventListener('click', e=>{ const c=e.target.dataset.c; if(c){ catFilter=c; renderCatalogue(); } });
+$('catGrid').addEventListener('click', e=>{
+  const id=e.target.dataset.order; if(!id) return;
+  const item=catItems.find(x=>x.id===id); if(!item) return;
+  const at=ateliers[item.atelier_id]||{};
+  openModal(`
+    <h2>Confirmer la commande</h2>
+    <p style="color:var(--ink-soft);">${esc(item.titre)} — ${esc(at.nom||'Atelier')}${item.prix?` — <b>${fcfa(item.prix)}</b>`:''}</p>
+    <div class="field"><label>Adresse de livraison</label><input id="ord_adresse" placeholder="Quartier, ville"></div>
+    <div style="display:flex; gap:8px; justify-content:flex-end; margin-top:10px;">
+      <button class="btn secondary" id="ord_cancel">Annuler</button>
+      <button class="btn" id="ord_confirm">Confirmer la commande</button>
+    </div>
+    <div class="err" id="ord_err"></div>`);
+  $('ord_cancel').onclick=closeModal;
+  $('ord_confirm').onclick=async ()=>{
+    const adresse=$('ord_adresse').value.trim();
+    const btn=$('ord_confirm'); btn.disabled=true; btn.textContent='Envoi...';
+    const prix=Number(item.prix)||0;
+    const {error}=await sb.from('orders').insert({
+      atelier_id:item.atelier_id, buyer_id:currentBuyer.uid,
+      client:currentBuyer.nom, clientId:null, adresse,
+      articles:[{nom:item.titre, qte:1, prix}], article:item.titre, prix,
+      paiements:[], status:'Nouvelle demande', createdAt:Date.now()
+    });
+    if(error){ $('ord_err').textContent="Envoi impossible. Réessayez dans un instant."; btn.disabled=false; btn.textContent='Confirmer la commande'; console.error(error); return; }
+    closeModal(); toast('Commande envoyée ✓'); loadMine();
+  };
+});
+
+/* ---------- Sur-mesure ---------- */
+async function loadAteliersForSelect(){
+  await loadAteliers();
+  const sel=$('sm_atelier');
+  sel.innerHTML='<option value="">Choisir un atelier…</option>'+Object.values(ateliers).filter(a=>a.nom)
+    .sort((a,b)=>(a.nom||'').localeCompare(b.nom||'')).map(a=>`<option value="${esc(a.id)}">${esc(a.nom)}</option>`).join('');
+}
+$('sm_go').addEventListener('click', async ()=>{
+  $('sm_err').textContent='';
+  const atelier_id=$('sm_atelier').value, demande=$('sm_demande').value.trim(), file=$('sm_photo').files[0];
+  if(!atelier_id||!demande){ $('sm_err').textContent='Choisissez un atelier et décrivez votre demande.'; return; }
+  const btn=$('sm_go'); btn.disabled=true; btn.textContent='Envoi...';
+  let photoUrl=null;
+  try{
+    if(file){
+      const path='custom/'+currentBuyer.uid+'/'+Date.now()+'-'+file.name.replace(/[^a-zA-Z0-9.\-_]/g,'_');
+      const {error:upErr}=await sb.storage.from('uploads').upload(path, file);
+      if(!upErr){ photoUrl=sb.storage.from('uploads').getPublicUrl(path).data.publicUrl; }
+    }
+    const {error}=await sb.from('quotes').insert({
+      atelier_id, buyer_id:currentBuyer.uid, client:currentBuyer.nom, telephone:currentBuyer.telephone,
+      demande, photoUrl, source:'marketplace', status:'Nouvelle demande', createdAt:Date.now()
+    });
+    if(error) throw error;
+    $('sm_demande').value=''; $('sm_photo').value=''; $('sm_atelier').value='';
+    toast('Demande envoyée ✓'); loadMine();
+  }catch(err){ console.error(err); $('sm_err').textContent="Envoi impossible. Réessayez dans un instant."; }
+  finally{ btn.disabled=false; btn.textContent='Envoyer ma demande'; }
+});
+
+/* ---------- Mes commandes / devis ---------- */
+function orderBadge(st){
+  const done=['Livrée'], bad=['Annulée'];
+  const cls = bad.includes(st) ? 'no' : done.includes(st) ? 'ok' : (st==='Nouvelle demande' ? 'new' : 'mid');
+  return `<span class="badge ${cls}">${esc(st||'Nouvelle demande')}</span>`;
+}
+function quoteBadge(st){
+  const map={'Nouvelle demande':'new','Réponse envoyée':'mid','Acceptée':'ok','Refusée':'no'};
+  return `<span class="badge ${map[st]||'new'}">${esc(st||'Nouvelle demande')}</span>`;
+}
+async function loadMine(){
+  const [{data:ords, error:oe}, {data:qts, error:qe}] = await Promise.all([
+    sb.from('orders').select('*').eq('buyer_id', currentBuyer.uid).order('createdAt',{ascending:false}),
+    sb.from('quotes').select('*').eq('buyer_id', currentBuyer.uid).order('createdAt',{ascending:false})
+  ]);
+  if(oe) console.error(oe); if(qe) console.error(qe);
+  const os=ords||[];
+  $('ordersList').innerHTML = os.length ? os.map(o=>{
+    const at=ateliers[o.atelier_id]||{};
+    return `<div class="order-row"><div class="top"><div><b>${esc(o.article||'')}</b><div class="art">${esc(at.nom||'')}</div></div>${orderBadge(o.status)}</div>
+      ${o.prix?`<div class="meta">${fcfa(o.prix)}</div>`:''}${o.livraison?`<div class="meta">Livraison prévue : ${esc(o.livraison)}</div>`:''}</div>`;
+  }).join('') : '<p class="empty">Vous n\'avez pas encore de commande.</p>';
+  const qs=qts||[];
+  $('quotesList').innerHTML = qs.length ? qs.map(q=>{
+    const at=ateliers[q.atelier_id]||{};
+    return `<div class="order-row"><div class="top"><div><b>${esc(at.nom||'Atelier')}</b><div class="art">${esc(q.demande||'')}</div></div>${quoteBadge(q.status)}</div>
+      ${q.status==='Réponse envoyée'||q.status==='Acceptée'?`<div class="meta">${q.prix?fcfa(q.prix)+' · ':''}${q.delai?'délai '+esc(q.delai):''}</div>`:''}</div>`;
+  }).join('') : '<p class="empty">Aucune demande de devis pour le moment.</p>';
+}
+
+/* ---------- Mon compte ---------- */
+$('me_save').addEventListener('click', async ()=>{
+  const nom=$('me_nom').value.trim(), telephone=$('me_tel').value.trim();
+  const btn=$('me_save'); btn.disabled=true; btn.textContent='Enregistrement...';
+  const {error}=await sb.from('buyers').update({nom, telephone}).eq('id', currentBuyer.uid);
+  btn.disabled=false; btn.textContent='Enregistrer';
+  if(error){ $('me_err').textContent="Échec de l'enregistrement."; return; }
+  currentBuyer.nom=nom; currentBuyer.telephone=telephone;
+  $('meAv').textContent=(nom||'?').trim().slice(0,1).toUpperCase();
+  toast('Profil mis à jour ✓');
+});
+</script>
+</body></html>
